@@ -2,6 +2,7 @@ name: ask
 description: Ask user a question 
 args: prompt_fields: A comma separated list of information needed.
 args: message: a nice message to send. 
+args: sessionId: the unique ID for this communication
 tools: sys.exec?
 
 #!/usr/bin/env python ${GPTSCRIPT_TOOL_DIR}/data.py
