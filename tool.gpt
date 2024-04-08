@@ -1,7 +1,7 @@
 name: ask
 description: Ask user a question 
-args: prompt_fields: A comma separated list of information needed.
-args: message: a nice message to send. 
+args: prompt_fields: a comma separated list of fields needed
+args: message: provide the user friendly context about the information being requested.
 args: sessionId: the unique sessionId for this communication, it will be passed along to the receiver.
 tools: sys.exec?
 
