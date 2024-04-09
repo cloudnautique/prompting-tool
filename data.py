@@ -17,7 +17,7 @@ def fetch_env_data():
 def send_message(fields, message):
     # Prepare ZeroMQ context and PUSH socket
     context = zmq.Context()
-    socket = context.socket(zmq.REQ)
+    socket = context.socket(zmq.DEALER)
     socket.connect("tcp://localhost:5555")  # Adjust address as needed
 
     # Construct data payload
