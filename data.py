@@ -12,7 +12,7 @@ def fetch_env_data():
     # Fetch the message environment variable
     message = os.getenv("message", "")
 
-    return fields, message, sessionId
+    return fields, message, sessionId, msg_type
 
 
 def send_message(fields, message, sessionId, msg_type="message"):
