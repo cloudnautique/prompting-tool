@@ -7,7 +7,7 @@ def fetch_env_data():
     prompt_fields_env = os.getenv("prompt_fields", "")
     fields = [field.strip() for field in prompt_fields_env.split(",") if field.strip()]
     sessionId = os.getenv("sessionId", "")
-    msg_type = os.getenv("type","message")
+    msg_type = os.getenv("messageType", "message")
 
     # Fetch the message environment variable
     message = os.getenv("message", "")
@@ -22,7 +22,12 @@ def send_message(fields, message, sessionId, msg_type="message"):
     socket.connect("tcp://localhost:5555")  # Adjust address as needed
 
     # Construct data payload
-    data_payload = {"type": msg_type, "fields": fields, "message": message, "sessionId": sessionId}
+    data_payload = {
+        "type": msg_type,
+        "fields": fields,
+        "message": message,
+        "sessionId": sessionId,
+    }
 
     # Send the data payload as a JSON string
     socket.send_json(data_payload)
@@ -33,5 +38,5 @@ def send_message(fields, message, sessionId, msg_type="message"):
 
 
 if __name__ == "__main__":
-    fields, message, sessionId, msg_type  = fetch_env_data()
+    fields, message, sessionId, msg_type = fetch_env_data()
     send_message(fields, message, sessionId, msg_type)

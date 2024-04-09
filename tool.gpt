@@ -3,6 +3,7 @@ description: Ask user a question
 args: prompt_fields: a comma separated list of fields needed
 args: message: provide the user friendly context about the information being requested.
 args: sessionId: the unique sessionId for this communication, it will be passed along to the receiver.
+args: messageType: Use message to just send information to the user, use prompt when expecting a reply
 tools: sys.exec?
 
 #!/usr/bin/env python ${GPTSCRIPT_TOOL_DIR}/data.py
