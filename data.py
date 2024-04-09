@@ -1,5 +1,6 @@
 import os
 import zmq
+import json
 
 
 def fetch_env_data():
@@ -18,7 +19,7 @@ def fetch_env_data():
 def send_message(fields, message, sessionId, msg_type="message"):
     # Prepare ZeroMQ context and PUSH socket
     context = zmq.Context()
-    socket = context.socket(zmq.REQ)
+    socket = context.socket(zmq.DEALER)
     socket.connect("tcp://localhost:5555")  # Adjust address as needed
 
     # Construct data payload
@@ -30,9 +31,12 @@ def send_message(fields, message, sessionId, msg_type="message"):
     }
 
     # Send the data payload as a JSON string
-    socket.send_json(data_payload)
+    print(data_payload)
+    json_data=json.dumps(data_payload).encode('utf-8')
+    socket.send(json_data)
     print("Message sent:", data_payload)
 
+    print("waiting for reply")
     reply = socket.recv_json()
     print("Received reply:", reply)
 
